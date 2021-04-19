@@ -5,11 +5,12 @@ global mass kstiff vo chord span alfageom alfatab cltab cdtab ...
 
 dz=zeros(3,1); % a column vector
 
-flowangle=atand(z(2)/vo);
-alfaeff=alfageom+flowangle;
-clstatic=interp1(alfatab,cltab,alfaeff);
-vrel=sqrt(vo^2+z(2)^2);
-tau=4*chord/vrel;
+
+flowangle = atand(z(2)/vo);
+alfaeff = alfageom+flowangle;
+clstatic = interp1(alfatab,cltab,alfaeff);
+vrel = sqrt(vo^2+z(2)^2);
+tau = 4*chord/vrel;
 clinv=interp1(alfatab,clinvtab,alfaeff);
 clfs=interp1(alfatab,clfstab,alfaeff);
 fs=interp1(alfatab,fstab,alfaeff);
