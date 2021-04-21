@@ -3,14 +3,13 @@ clear all;
 % boris first chqnge
 global mass kstiff cdamp ksi fampl fomeg;
 
-%test
+
 
 kstiff = 2; % 
 mass = 0.5;
 ksi = 0.2; % c (this constant appears in the dimensionless damping)
 cdamp = ksi * 2 * sqrt(kstiff*mass); % Dimensionless damping
 fampl = 3; % Amplitud of the force
-omega_nat = sqrt(kstiff/mass); % Natural frequency
 fomeg = 0.95 * omega_nat;
 
 % [t,y] = ode45(odefun,tspan,y0), where tspan = [t0 tf], integrates the
