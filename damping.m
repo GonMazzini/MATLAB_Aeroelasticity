@@ -17,6 +17,8 @@ fomeg = 0.95 * omega_nat;
 % conditions y0. Each row in the solution array y corresponds to a value
 % returned in column vector t.
 
+dummy = 1
+
 tspan = linspace(0,40,2000);
 opt = odeset('maxStep', 1e-3);
 [t,z] = ode45(@springmass, [0 50], [0 0],opt); 
