@@ -3,6 +3,8 @@ clear all;
 % boris first chqnge
 global mass kstiff cdamp ksi fampl fomeg;
 
+%test
+
 kstiff = 2; % 
 mass = 0.5;
 ksi = 0.2; % c (this constant appears in the dimensionless damping)
