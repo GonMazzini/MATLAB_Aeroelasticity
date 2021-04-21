@@ -1,6 +1,6 @@
 close all;
 clear all;
-% comment done in remote repo
+% boris first chqnge
 global mass kstiff cdamp ksi fampl fomeg;
 
 kstiff = 2; % 
