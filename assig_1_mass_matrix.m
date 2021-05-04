@@ -25,9 +25,9 @@ end
 
 %% compute mass matrix
 MM = zeros(3);
-omega1f =3.93; % rad/s
-omega1e= 6.10 ; %rad/s 
-omega2f= 11.28 ; % rad/s
+omega1f = 3.93  ; % rad/s
+omega1e = 6.10  ; %rad/s 
+omega2f = 11.28 ; % rad/s
 % start calculating first column of M
 MM(1,1) = trapz(r, u1fy .* m .* u1fy) + trapz(r, u1fz .* m .* u1fz) ; 
 MM(2,1) = trapz(r, u1ey .* m .* u1fy) + trapz(r, u1ez .* m .* u1fz) ; % unit disp.DOF 2 (u1ey) * unit acc.DOF1(m .* u1fy) + same with z  
@@ -82,6 +82,8 @@ M5dof = zeros(5);
 % Column 1
 M5dof(1,1) = 3*trapz(r, m) + M_nac; % NOTE 3 blades or just for 1? Why?
 M5dof(2,1) = 0; % intertia load is perpendicular to rotor, and DOF 2 (theta) is in the rotor plane
+% Projection of the modes in the Rotor plane, in order to calculate the
+% work corresp. to unit acc. in Z direction
 u1fz_R = u1fy * sin(pitch) + u1fz * cos(pitch) ; 
 u1ez_R = u1ey * sin(pitch) + u1ez * cos(pitch) ;
 u2fz_R = u2fy * sin(pitch) + u2fz * cos(pitch) ;
@@ -90,7 +92,7 @@ M5dof(4,1) = trapz(r, u1ez_R .* m * 1);
 M5dof(5,1) = trapz(r, u2fz_R .* m * 1);
 % Column 2
 M5dof(1,2) = 0; % acc. (Y dir) is perp. to displacment in DOF 1 (in Z)
-M5dof(2,2) = 3*trapz(r, m .* r.^2 .* cos(cone)) + M_nac;% FIXME Should the M_nac be included? WHy? The whole system must be consider for a displacement in DOF 2 (theta)
+M5dof(2,2) = 3*trapz(r, m .* r.^2 .* cos(cone));% FIXME Should the M_nac be included? WHy? The whole system must be consider for a displacement in DOF 2 (theta)
 M5dof(3,2) = trapz(r, m .* r * cos(cone) .* u1fy);
 M5dof(4,2) = trapz(r, m .* r * cos(cone) .* u1ey);
 M5dof(5,2) = trapz(r, m .* r * cos(cone) .* u2fy);
@@ -118,3 +120,17 @@ K5_dof(1,1) = k_tow;
 K5_dof(3,3) = omega1f^2 * M5dof(3,3);
 K5_dof(4,4) = omega1e^2 * M5dof(4,4);
 K5_dof(5,5) = omega2f^2 * M5dof(5,5);
+%% Calculate eigenvalues 
+% k5-DOF(2,2) cannot be zero in order to be able to compute inv(K5_dof)
+k22 = [1e-4 1e-2 1 1e2 1e4 1e12] ;  
+omega = zeros(length(k22), 5);
+for xx = 1:length(k22)
+    K5_dof(2,2) = k22(xx);
+    [V,D] = eigs(inv(K5_dof) * M5dof );
+    for i = 1:5
+       omega(xx,i) = sqrt(1/D(i,i));
+    end
+end
+
+
+
