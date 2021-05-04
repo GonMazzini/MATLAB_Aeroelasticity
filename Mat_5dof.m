@@ -1,4 +1,4 @@
-function [M5dof,K5_dof, GF5] = Mat_5dof(l_pitch, cone, r, pn, pt, Mgen,nt)
+function [M5dof,K5_dof, GF5 , D5] = Mat_5dof(l_pitch, cone, r, pn, pt, Mgen,nt)
 % Return Mass, Stiffnes and Damping matrices and Generalized Force
 % for a 5 DOF.
 %   Inputs:
@@ -58,10 +58,10 @@ M5dof(5,5) = trapz(r, m .* u2fy .* u2fy + m .* u2fz .* u2fz);
 % NOTE Where should we use the eigenfrecuencies of inv(K)*M . GX = (1/w^2) . GX
 K5_dof = zeros(5);
 K5_dof(1,1) = k_tow;
-K5_dof(3,3) = omega1f^2 * M5dof(3,3);
+K5_dof(3,3) = omega1f^2 * M5dof(3,3); % FIXME Should we use the new frecuencies for the Eigenvalue problem?
 K5_dof(4,4) = omega1e^2 * M5dof(4,4);
 K5_dof(5,5) = omega2f^2 * M5dof(5,5);
-%% GF -----------------------------
+%% GENERALIZED FORCES -----------------------------
 GF5 = zeros(5,1);
 TorqueAero = trapz(r,r.*pt(:,1,nt)) + trapz(r,r.*pt(:,2,nt)) + trapz(r,r.*pt(:,3,nt)); % Sum the torque for each blade
 Thrust = trapz(r,pn(:,1,nt)) + trapz(r,pn(:,2,nt)) + trapz(r,pn(:,3,nt)); % Sum the thrust for each blade
@@ -74,6 +74,7 @@ GF5(4) = trapz(r, pt(:,1,nt) .* (u1ez * sin(l_pitch) + u1ey * cos(l_pitch))) + .
                     trapz( r, pn(:,1,nt) .* (u1ez * cos(l_pitch) - u1ey * sin(l_pitch)));
 GF5(5) = trapz(r, pt(:,1,nt) .* (u2fz * sin(l_pitch) + u2fy * cos(l_pitch))) + ...
                     trapz( r, pn(:,1,nt) .* (u2fz * cos(l_pitch) - u2fy * sin(l_pitch)));
-
+%% DAMPIING MATRIX -----------------------------         
+D5 = zeros(5,5);
 end
 
