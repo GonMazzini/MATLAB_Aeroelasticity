@@ -8,8 +8,8 @@ theta = zeros(nt_max, B);
 
 % Relative wind speed.
 % Why it starts with -3 ?
-Wy = -0.5*ones(length(r),B,nt_max);
-Wz = -2.5*ones(length(r),B,nt_max);
+Wy = zeros(length(r),B,nt_max); % -0.5*ones
+Wz = zeros(length(r),B,nt_max); % -2.5*ones
 
 Wy_qs = zeros(length(r),B,nt_max);
 Wz_qs = zeros(length(r),B,nt_max);
