@@ -21,7 +21,8 @@ tau2 = (0.39-0.26*(r(i)/R)^2)*tau1;
 % Compute Wint using backward difference for the diffeential equations
 % of \Óye method. 
 Hz = Wz_qs(i,b,nt)+0.6*tau1*(Wz_qs(i,b,nt)-Wz_qs(i,b,nt-1))/(dt);
-Hy = Wy_qs(i,b,nt)+0.6*tau1*(Wz_qs(i,b,nt)-Wz_qs(i,b,nt-1))/(dt);            
+Hy = Wy_qs(i,b,nt)+0.6*tau1*(Wz_qs(i,b,nt)-Wz_qs(i,b,nt-1))/(dt); 
+
 Wz_int(i,b,nt) = Hz + (Wz_int(i,b,nt-1) - Hz)*exp(-(dt)/tau1);
 Wy_int(i,b,nt) = Hy + (Wy_int(i,b,nt-1) - Hy)*exp(-(dt)/tau1);
 
