@@ -8,13 +8,13 @@ theta = zeros(nt_max, B);
 
 % Relative wind speed.
 % Why it starts with -3 ?
-Wy = zeros(length(r),B,nt_max); % -0.5*ones
-Wz = zeros(length(r),B,nt_max); % -2.5*ones
+Wy = -3*ones(length(r),B,nt_max); % -0.5*ones
+Wz = -3*ones(length(r),B,nt_max); % -2.5*ones
 
-Wy_qs = zeros(length(r),B,nt_max);
-Wz_qs = zeros(length(r),B,nt_max);
-Wy_int = zeros(length(r),B,nt_max);
-Wz_int = zeros(length(r),B,nt_max);
+Wy_qs = -3*ones(length(r),B,nt_max);
+Wz_qs = -3*ones(length(r),B,nt_max);
+Wy_int = -3*ones(length(r),B,nt_max);
+Wz_int = -3*ones(length(r),B,nt_max);
 
 % Define loads matrices size.
 pn = zeros(length(r),B,nt_max);

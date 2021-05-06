@@ -10,6 +10,7 @@ function [Wz,Wy] = WakeFilter(nt, b, i, dt, r, R, a, vosys4, l, B, phi , rho , F
 %   - Wz/Wy the final filtered value to be used as the induced velocity.
 %   
 
+
 % Compute Wqs Quasi static induced winds
 Wz_qs(i,b,nt) = -(B*l*cos(phi)/(4*pi*rho*r(i)*F*denom));
 Wy_qs(i,b,nt) = -(B*l*sin(phi)/(4*pi*rho*r(i)*F*denom));    
