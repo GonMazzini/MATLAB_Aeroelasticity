@@ -46,7 +46,6 @@ MM(3,3) = trapz(r, u2fy .* m .* u2fy) + trapz(r, u2fz .* m .* u2fz) ;
 
 % Damping matrix
 dampmatrix = zeros(3);
-dampmatrix = zeros(3);
 dampmatrix(1,1) = MM(1,1)*3.93*0.03/pi;  % GM(1,1) * w1f^2  [rad/s]
 dampmatrix(2,2) = MM(2,2)*6.10*0.03/pi;
 dampmatrix(3,3) = MM(3,3)*11.28*0.03/pi;
