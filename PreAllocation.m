@@ -1,5 +1,5 @@
 function [theta, Wy, Wz, Wy_qs, Wz_qs, Wy_int, Wz_int, pn, pt, P1, P2, P3,...
-    T1, T2, T3, M1, M2, M3, Mgen_vec] = PreAllocation(nt_max, B, r)
+    T1, T2, T3, M1, M2, M3, Mgen_vec] = PreAllocation(nt_max, B, r, w_initial)
 % Use this function to define the vector sizes.
 %   Output: Relative wind speed, loads matrices, power and thrust vectors.
 
@@ -8,14 +8,14 @@ theta = zeros(nt_max, B);
 
 % Relative wind speed.
 % Why it starts with -3 ?
-init_w = 0;
-Wy = init_w*ones(length(r),B,nt_max); % -0.5*ones
-Wz = init_w*ones(length(r),B,nt_max); % -2.5*ones
 
-Wy_qs = init_w*ones(length(r),B,nt_max);
-Wz_qs = init_w*ones(length(r),B,nt_max);
-Wy_int = init_w*ones(length(r),B,nt_max);
-Wz_int = init_w*ones(length(r),B,nt_max);
+Wy = w_initial*ones(length(r),B,nt_max); % -0.5*ones
+Wz = w_initial*ones(length(r),B,nt_max); % -2.5*ones
+
+Wy_qs = w_initial*ones(length(r),B,nt_max);
+Wz_qs = w_initial*ones(length(r),B,nt_max);
+Wy_int = w_initial*ones(length(r),B,nt_max);
+Wz_int = w_initial*ones(length(r),B,nt_max);
 
 % Define loads matrices size.
 pn = zeros(length(r),B,nt_max);
