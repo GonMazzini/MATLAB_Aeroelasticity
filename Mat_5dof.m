@@ -76,9 +76,9 @@ GF5(5) = trapz(r, pt(:,1,nt) .* (u2fz * sin(l_pitch) + u2fy * cos(l_pitch))) + .
                     trapz( r, pn(:,1,nt) .* (u2fz * cos(l_pitch) - u2fy * sin(l_pitch)));
 %% DAMPIING MATRIX -----------------------------         
 D5 = zeros(5,5);
-dampmatrix(3,3) = M5dof(3,3)*3.93*0.03/pi;  % GM(1,1) * w1f^2  [rad/s]
-dampmatrix(4,4) = M5dof(4,4)*6.10*0.03/pi;
-dampmatrix(5,5) = M5dof(5,5)*11.28*0.03/pi;
+%D5(3,3) = M5dof(3,3)*3.93*0.03/pi;  % GM(1,1) * w1f^2  [rad/s]
+%D5(4,4) = M5dof(4,4)*6.10*0.03/pi;
+%D5(5,5) = M5dof(5,5)*11.28*0.03/pi;
 
 
 
