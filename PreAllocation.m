@@ -1,5 +1,6 @@
 function [theta, Wy, Wz, Wy_qs, Wz_qs, Wy_int, Wz_int, pn, pt, P1, P2, P3,...
-    T1, T2, T3, M1, M2, M3, Mgen_vec] = PreAllocation(nt_max, B, r, w_initial)
+    T1, T2, T3, Medge_1, Medge_2, Medge_3,Mflap_1, Mflap_2, Mflap_3, Mgen_vec]...
+    = PreAllocation(nt_max, B, r, w_initial)
 % Use this function to define the vector sizes.
 %   Output: Relative wind speed, loads matrices, power and thrust vectors.
 
@@ -28,9 +29,12 @@ P3 = zeros(1,nt_max);
 T1 = zeros(1,nt_max);
 T2 = zeros(1,nt_max);
 T3 = zeros(1,nt_max);
-M1 = zeros(1,nt_max);
-M2 = zeros(1,nt_max);
-M3 = zeros(1,nt_max);
+Medge_1 = zeros(1,nt_max);
+Medge_2 = zeros(1,nt_max);
+Medge_3 = zeros(1,nt_max);
+Mflap_1 = zeros(1,nt_max);
+Mflap_2 = zeros(1,nt_max);
+Mflap_3 = zeros(1,nt_max);
 Mgen_vec = zeros(1,nt_max);
 
 
